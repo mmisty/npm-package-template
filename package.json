@@ -19,11 +19,8 @@
     "template"
   ],
   "devDependencies": {
-    "@types/jest": "~26.0.22",
-    "jest": "~26.4.2",
     "prettier": "~2.0.5",
     "pretty-quick": "^3.0.0",
-    "ts-jest": "~26.1.3",
     "tslib": "^2.0.1",
     "tsutils": "~3.17.0",
     "typescript": "~3.9.7"
