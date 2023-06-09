@@ -1,10 +1,10 @@
 {
-  "name": "allure-ts-parser",
+  "name": "@mmisty/npm-pack-template",
   "version": "0.0.0",
-  "description": "allure-js-parser",
+  "description": "@mmisty/npm-pack-template",
   "main": "./dist/index",
   "types": "./dist/index.d.ts",
-  "repository": "git@github.com:mmisty/allure-js-parser.git",
+  "repository": "git@github.com:mmisty/npm-package-template.git",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -14,15 +14,17 @@
     "test": "CONSOLE=true jest",
     "test:cov": "CONSOLE=false jest --coverage",
     "lint": "eslint --ext '.js,.ts' . --ignore-path .gitignore",
-    "prepublish": "npm run fmt && npm run build",
-    "build": "rm -rf dist && tsc --project tsconfig.build.json &&  cp package.json ./dist/package.json && cp README-pack.md ./dist/README.md",
-    "pack": "npm run build && cd dist && npm pack",
-    "publish": "npm run build && cd dist && npm version $(semver $(npm show . version) --increment -i patch) --no-git-tag-version && npm publish",
-    "publish:patch": "npm run publish",
-    "publish:minor": "npm run build && cd dist && npm version $(semver $(npm show . version) --increment -i minor) --no-git-tag-version && npm publish",
-    "publish:major": "npm run build && cd dist && npm version $(semver $(npm show . version) --increment -i major) --no-git-tag-version && npm publish",
-    "prepublishOnly": "echo 'USE script \"npm run publish:patch\" (or minor/major)\n' && false",
-    "fmt": "pretty-quick"
+    "build:all": "tsc",
+    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "fmt": "pretty-quick",
+    "pack": "npm run build && cp package.json ./dist/package.json && cp README-pack.md ./dist/README.md && sh scripts/remove.sh && cd dist && npm version $ver --no-git-tag-version ",
+    "prepublish": "npm run lint",
+    "publishPack": "npm run pack && cd dist && npm publish",
+    "publish": "npm run publish:patch",
+    "publish:patch": "export ver=$(semver $(npm show . version) --increment -i patch) && npm run publishPack && npm run postpublish",
+    "publish:minor": "export ver=$(semver $(npm show . version) --increment -i minor) && npm run publishPack && npm run postpublish",
+    "publish:major": "export ver=$(semver $(npm show . version) --increment -i major) && npm run publishPack && npm run postpublish",
+    "postpublish": "git tag v$ver"
   },
   "keywords": [
     "template"

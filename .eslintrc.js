@@ -9,7 +9,7 @@ module.exports = {
     es2021: true,
   },
   plugins: ['prettier', '@typescript-eslint'],
-  ignorePatterns: ['*.yaml', '*.yml', '*.csv'],
+  ignorePatterns: ['*.yaml', '*.yml', '*.csv', 'jest.config.js', '.eslintrc.js'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
     'prefer-template': 'error',

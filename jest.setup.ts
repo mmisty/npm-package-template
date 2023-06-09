@@ -28,6 +28,7 @@ if (process.env.CONSOLE === 'true' || !process.env.CONSOLE) {
   type LogLevel = (typeof dismisLogMethods)[number];
   Object.keys(console).forEach(m => {
     if (dismisLogMethods.indexOf(m as LogLevel) !== -1) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       jest.spyOn(console, m as any).mockImplementation();
     }
   });
