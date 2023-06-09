@@ -2,16 +2,19 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "suppressImplicitAnyIndexErrors": false,
-    "baseUrl": "./dist",
     "target": "es2015",
     "outDir": "./dist",
-    "rootDir": "./src",
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "typeRoots": ["node_modules/@types"]
+    "types": ["node", "jest"],
+    "baseUrl": "./src",
+    "paths": {
+      "@src": ["./index.ts"],
+      "@src/*": ["./*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["config", "examples"]
+  "include": ["src", "jest.setup.ts", "tests"]
 }
