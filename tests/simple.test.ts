@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import { someUseful } from '@src';
 import { output, output2 } from '@src/module/helper';
 
@@ -8,6 +7,7 @@ describe('simple-suite', () => {
 
   it('simple-test', async () => {
     someUseful();
+    expect(0).toEqual(0);
   });
 
   it('output message', async () => {
